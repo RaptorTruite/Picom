@@ -11,7 +11,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ApiResource()
  * @ORM\Entity(repositoryClass=AdHTMLRepository::class)
  */
-class AdHTML extends Ad
+class AdHtml extends Ad
 {
     /**
      * @ORM\Id
