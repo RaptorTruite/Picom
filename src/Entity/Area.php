@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use Symfony\Component\Serializer\Annotation\Groups;
 use ApiPlatform\Core\Annotation\ApiResource;
 use App\Repository\AreaRepository;
 use Doctrine\Common\Collections\ArrayCollection;
@@ -9,7 +10,9 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ApiResource()
+ * @ApiResource(
+ *      normalizationContext={"groups" ={"read:area"}}
+ * )
  * @ORM\Entity(repositoryClass=AreaRepository::class)
  */
 class Area
@@ -18,16 +21,19 @@ class Area
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
+     * @Groups({"read:area"})
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups({"read:area"})
      */
     private $name;
 
     /**
      * @ORM\OneToMany(targetEntity=Stop::class, mappedBy="area", orphanRemoval=true)
+     * @Groups({"read:area"})
      */
     private Collection $stops;
 

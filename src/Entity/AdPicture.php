@@ -8,7 +8,9 @@ use App\Repository\AdPictureRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ApiResource()
+ * @ApiResource(
+ *      normalizationContext={"groups" = {"read:ad", "read:timezones", "read:area", "read:stop"}}
+ * )
  * @ORM\Entity(repositoryClass=AdPictureRepository::class)
  */
 class AdPicture extends Ad

@@ -3,13 +3,16 @@
 namespace App\Entity;
 
 use ApiPlatform\Core\Annotation\ApiResource;
+use Symfony\Component\Serializer\Annotation\Groups;
 use App\Repository\TimeZoneRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ApiResource()
+ * @ApiResource(
+ *      normalizationContext={"groups" ={"read:timezones"}}
+ * )
  * @ORM\Entity(repositoryClass=TimeZoneRepository::class)
  */
 class TimeZone
@@ -18,11 +21,13 @@ class TimeZone
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
+     * @Groups({"read:timezones"})
      */
     private $id;
 
     /**
      * @ORM\Column(type="integer")
+     * @Groups({"read:timezones"})
      */
     private $startTime;
 

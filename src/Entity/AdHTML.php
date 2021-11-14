@@ -8,7 +8,9 @@ use App\Repository\AdHTMLRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ApiResource()
+ * @ApiResource(
+ *      normalizationContext={"groups" = {"read:ad", "read:timezones", "read:area", "read:stop"}}
+ * )
  * @ORM\Entity(repositoryClass=AdHTMLRepository::class)
  */
 class AdHtml extends Ad
