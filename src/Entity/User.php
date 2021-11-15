@@ -14,7 +14,7 @@ use Symfony\Component\Security\Core\User\UserInterface;
 /**
  * @ORM\Entity(repositoryClass=UserRepository::class)
  * @ApiResource(
- *      normalizationContext={"groups" ={"read:user"}}
+ *      normalizationContext={"groups" ={"read:user", "read:ad"}}
  * )
  */
 class User implements UserInterface, PasswordAuthenticatedUserInterface
@@ -56,6 +56,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     /**
      * @ORM\OneToMany(targetEntity=ad::class, mappedBy="user", orphanRemoval=true)
+     * @Groups({"read:user"})
      */
     private Collection $ads;
 
